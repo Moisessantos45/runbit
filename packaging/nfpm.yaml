@@ -1,0 +1,33 @@
+name: "runbit"
+arch: "amd64"
+platform: "linux"
+version: "1.0.0"
+section: "utils"
+priority: "optional"
+maintainer: "Moisessantos45 <santosxphdz34@gmail.com>"
+description: |
+  Lightweight desktop playground for JavaScript and TypeScript.
+  Write snippets in a multi-tab editor and run them instantly
+  using the Bun runtime. Supports npm package management built-in.
+homepage: "https://github.com/Moisessantos45/runbit"
+license: "Non-Commercial License"
+
+
+contents:
+  - src: ../build/bin/runbit
+    dst: /usr/bin/runbit
+    file_info:
+      mode: 0755
+
+  - src: ./runbit.desktop
+    dst: /usr/share/applications/runbit.desktop
+
+  - src: ../build/appicon.png
+    dst: /usr/share/icons/hicolor/256x256/apps/runbit.png
+
+  - src: ../LICENSE
+    dst: /usr/share/doc/runbit/LICENSE
+
+scripts:
+  postinstall: ./postinstall.sh
+  postremove: ./postremove.sh

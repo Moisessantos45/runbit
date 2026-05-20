@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=RunBit
+Comment=Run JavaScript snippets with Bun
+Exec=/usr/bin/runbit
+Icon=runbit
+Terminal=false
+Categories=Development;Utility;
+Keywords=javascript;bun;runner;snippets;
+StartupWMClass=runbit
