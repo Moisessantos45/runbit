@@ -22,6 +22,7 @@ func (a *App) InstallBun() error {
 		ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
 		defer cancel()
 		cmd := exec.CommandContext(ctx, "bash", "-c", "curl -fsSL https://bun.com/install | bash")
+		hideWindow(cmd)
 		var out bytes.Buffer
 		cmd.Stdout = &out
 		cmd.Stderr = &out
@@ -34,7 +35,8 @@ func (a *App) InstallBun() error {
 	case "windows":
 		ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
 		defer cancel()
-		cmd := exec.CommandContext(ctx, "powershell", "-c", "irm bun.sh/install.ps1 | iex")
+		cmd := exec.CommandContext(ctx, "powershell", "-WindowStyle", "Hidden", "-c", "irm bun.sh/install.ps1 | iex")
+		hideWindow(cmd)
 		var out bytes.Buffer
 		cmd.Stdout = &out
 		cmd.Stderr = &out
@@ -164,6 +166,7 @@ func (a *App) EnsureRunnerProject() error {
 	ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute)
 	defer cancel()
 	cmd := exec.CommandContext(ctx, bunPath, "install")
+	hideWindow(cmd)
 	cmd.Dir = runnerDir
 
 	var out bytes.Buffer

@@ -17,4 +17,6 @@ Thumbs.db
 .env
 .env.*
 runner/
-runner
+runner*
+*.nsi
+*.msi

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="Runbit" Language="1033" Version="1.0.0" Manufacturer="Moisessantos45" UpgradeCode="12345678-1234-1234-1234-123456789012">
+    <Package Description="Runbit Installer" InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+    <Media Id="1" Cabinet="runbit.cab" EmbedCab="yes" />
+
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLDIR" Name="Runbit">
+          <Component Id="RunbitExecutable" Guid="*">
+            <File Id="RunbitExe" Source="/home/moy45/Proyectos_wails/runbit/build/bin/runbit.exe" KeyPath="yes" />
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+
+    <Feature Id="MainApplication" Title="Main Application" Level="1">
+      <ComponentRef Id="RunbitExecutable" />
+    </Feature>
+  </Product>
+</Wix>

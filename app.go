@@ -32,19 +32,27 @@ func (a *App) Greet(name string) string {
 }
 
 func (a *App) FindBunPath() (string, error) {
-	if bunPath, err := exec.LookPath("bun"); err == nil {
-		return bunPath, nil
-	}
-
-	homeDir, err := os.UserHomeDir()
-	if err == nil {
-		bunPath := filepath.Join(homeDir, ".bun", "bin", "bun")
-		if runtimepkg.GOOS == "windows" {
-			bunPath = filepath.Join(homeDir, ".bun", "bin", "bun.exe")
+	if runtimepkg.GOOS == "windows" {
+		homeDir, err := os.UserHomeDir()
+		if err == nil {
+			bunPath := filepath.Join(homeDir, ".bun", "bin", "bun.exe")
+			if _, err := os.Stat(bunPath); err == nil {
+				return bunPath, nil
+			}
 		}
-
-		if _, err := os.Stat(bunPath); err == nil {
+		if bunPath, err := exec.LookPath("bun.exe"); err == nil {
 			return bunPath, nil
+		}
+	} else {
+		if bunPath, err := exec.LookPath("bun"); err == nil {
+			return bunPath, nil
+		}
+		homeDir, err := os.UserHomeDir()
+		if err == nil {
+			bunPath := filepath.Join(homeDir, ".bun", "bin", "bun")
+			if _, err := os.Stat(bunPath); err == nil {
+				return bunPath, nil
+			}
 		}
 	}
 
@@ -178,6 +186,7 @@ func (a *App) RunJS(code string) RunResult {
 	}
 
 	cmd := exec.CommandContext(ctx, bunPath, "run", "-")
+	hideWindow(cmd)
 	cmd.Dir = runnerDir
 	cmd.Stdin = bytes.NewBufferString(code)
 
@@ -231,6 +240,7 @@ func (a *App) AddPackage(name string) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
 	defer cancel()
 	cmd := exec.CommandContext(ctx, bunPath, "add", name)
+	hideWindow(cmd)
 	cmd.Dir = runnerDir
 
 	var out bytes.Buffer
@@ -263,6 +273,7 @@ func (a *App) RemovePackage(name string) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
 	defer cancel()
 	cmd := exec.CommandContext(ctx, bunPath, "remove", name)
+	hideWindow(cmd)
 	cmd.Dir = runnerDir
 
 	var out bytes.Buffer
@@ -297,6 +308,7 @@ func (a *App) ListPackages(all bool) (string, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
 	defer cancel()
 	cmd := exec.CommandContext(ctx, bunPath, args...)
+	hideWindow(cmd)
 	cmd.Dir = runnerDir
 
 	var out bytes.Buffer
