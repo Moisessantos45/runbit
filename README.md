@@ -6,7 +6,7 @@ RunBit is a lightweight desktop application that lets you write, run and test Ja
 
 ---
 
-## ✨ Features
+## Features
 
 - **Multi-tab workspace** — open as many independent tabs as you need, each one runs its own code in isolation, just like VS Code windows.
 - **Real-time output** — results appear in the side panel as soon as your code finishes executing.
@@ -30,7 +30,7 @@ RunBit is a lightweight desktop application that lets you write, run and test Ja
 
 ---
 
-## 🚀 Development
+## Development
 
 ```bash
 # Install frontend dependencies (uses Bun)
@@ -40,7 +40,7 @@ cd frontend && bun install && cd ..
 wails dev -tags webkit2_41
 ```
 
-## 📦 Building
+## Building
 
 ```bash
 # Compile production binary
@@ -52,7 +52,35 @@ wails build -clean -tags webkit2_41
 
 ---
 
-## 📋 Requirements
+## Descargas e instalacion
+
+### Linux (.deb)
+
+Descarga el instalador:
+https://drive.google.com/file/d/1ZHgusOAqBOzutK_MQbBJ7eh26XootzHR/view
+
+Instala con:
+
+```bash
+sudo dpkg -i runbit.deb
+```
+
+Si faltan dependencias:
+
+```bash
+sudo apt-get -f install
+```
+
+### Windows (.exe)
+
+Descarga el instalador:
+https://drive.google.com/file/d/1JyHioafbRJtWZvZBBC_UiX0UhUjYJQRX/view
+
+Ejecuta el archivo .exe y sigue el asistente.
+
+---
+
+## Requirements
 
 - Go ≥ 1.23
 - Bun ≥ 1.0
@@ -60,7 +88,7 @@ wails build -clean -tags webkit2_41
 
 ---
 
-## 📄 License
+## License
 
 Non-Commercial License — © 2025 Moisessantos45.
 See [LICENSE](./LICENSE) for details.
