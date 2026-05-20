@@ -82,6 +82,10 @@ sudo apt-get -f install
 
 
 Descarga el instalador:
+
+Linux 1.6.0:
+https://drive.google.com/file/d/196tUGZ4EnOfz6xamfkWgFQDDHXqLPhi1/view?usp=sharing
+
 Linux 1.5.0:
 https://drive.google.com/file/d/1zi_IAJihYLN4xGSZeyIbkPpEb3o1GKaF/view?usp=sharing
 
