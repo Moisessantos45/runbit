@@ -15,6 +15,38 @@ import (
 
 func (a *App) startup(ctx context.Context) {
 	a.ctx = ctx
+	
+	err := runtime.InitializeNotifications(a.ctx)
+	if err != nil {
+		log.Printf("Error initializing notifications: %v", err)
+	}
+
+	category := runtime.NotificationCategory{
+		ID: "update-category",
+		Actions: []runtime.NotificationAction{
+			{
+				ID:    "DOWNLOAD",
+				Title: "Download Update",
+			},
+			{
+				ID:    "LATER",
+				Title: "Later",
+			},
+		},
+	}
+	_ = runtime.RegisterNotificationCategory(a.ctx, category)
+
+	runtime.OnNotificationResponse(a.ctx, func(result runtime.NotificationResult) {
+		if result.Error != nil {
+			return
+		}
+		if result.Response.ActionIdentifier == "DOWNLOAD" {
+			if url, ok := result.Response.UserInfo["downloadUrl"].(string); ok && url != "" {
+				runtime.BrowserOpenURL(a.ctx, url)
+			}
+		}
+	})
+
 	a.registerEvents()
 
 	go a.bootstrapRunner()

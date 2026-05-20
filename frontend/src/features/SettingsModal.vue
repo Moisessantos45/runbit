@@ -86,6 +86,8 @@
             No packages installed yet.
           </div>
         </div>
+
+        <AboutSection />
       </div>
     </div>
   </div>
@@ -94,6 +96,7 @@
 <script lang="ts" setup>
 import { ref, watch } from 'vue'
 import { AddPackage, RemovePackage, ListInstalledPackages } from '../../wailsjs/go/main/App'
+import AboutSection from './AboutSection.vue'
 
 const props = defineProps<{
   isOpen: boolean

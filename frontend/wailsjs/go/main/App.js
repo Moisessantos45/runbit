@@ -10,12 +10,20 @@ export function CheckBunInstalled() {
   return window['go']['main']['App']['CheckBunInstalled']();
 }
 
+export function CheckUpdate() {
+  return window['go']['main']['App']['CheckUpdate']();
+}
+
 export function EnsureRunnerProject() {
   return window['go']['main']['App']['EnsureRunnerProject']();
 }
 
 export function FindBunPath() {
   return window['go']['main']['App']['FindBunPath']();
+}
+
+export function GetAppVersion() {
+  return window['go']['main']['App']['GetAppVersion']();
 }
 
 export function Greet(arg1) {

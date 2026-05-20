@@ -57,6 +57,13 @@ wails build -clean -tags webkit2_41
 ### Linux (.deb)
 
 Descarga el instalador:
+Linux 1.5.0:
+https://drive.google.com/file/d/1cS0M3oJwq94JY5yODlp-ni5fHD0YH9Iu/view?usp=sharing
+
+Linux 1.3.0:
+https://drive.google.com/file/d/1xethF6S-ouRBDDipJsfb3AM7egetCIDH/view?usp=sharing
+
+Linux 1.2.0:
 https://drive.google.com/file/d/1ZHgusOAqBOzutK_MQbBJ7eh26XootzHR/view
 
 Instala con:
@@ -73,8 +80,13 @@ sudo apt-get -f install
 
 ### Windows (.exe)
 
+
 Descarga el instalador:
-https://drive.google.com/file/d/1JyHioafbRJtWZvZBBC_UiX0UhUjYJQRX/view
+Linux 1.5.0:
+https://drive.google.com/file/d/1zi_IAJihYLN4xGSZeyIbkPpEb3o1GKaF/view?usp=sharing
+
+Linux 1.4.0:
+https://drive.google.com/file/d/1JyHioafbRJtWZvZBBC_UiX0UhUjYJQRX/view?usp=sharing
 
 Ejecuta el archivo .exe y sigue el asistente.
 

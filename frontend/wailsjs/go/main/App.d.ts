@@ -6,9 +6,13 @@ export function AddPackage(arg1:string):Promise<void>;
 
 export function CheckBunInstalled():Promise<string>;
 
+export function CheckUpdate():Promise<Record<string, any>>;
+
 export function EnsureRunnerProject():Promise<void>;
 
 export function FindBunPath():Promise<string>;
+
+export function GetAppVersion():Promise<string>;
 
 export function Greet(arg1:string):Promise<string>;
 

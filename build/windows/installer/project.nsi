@@ -4,7 +4,7 @@
 !define MUI_UNICON "..\icon.ico"
 
 !define APPNAME "runbit"
-!define APPVERSION "1.4.0"
+!define APPVERSION "1.5.0"
 
 Name "${APPNAME}"
 OutFile "..\..\bin\runbit-installer.exe"

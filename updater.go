@@ -7,6 +7,7 @@ import (
 	"log"
 	"net/http"
 	"runtime"
+	"strings"
 	"time"
 
 	wailsruntime "github.com/wailsapp/wails/v2/pkg/runtime"
@@ -65,6 +66,10 @@ func checkForUpdate(currentVersion string) (latest, downloadURL string, hasUpdat
 	}
 
 	latest = result.Data.CodeVersion
+	latest = strings.TrimSuffix(latest, ".deb")
+	latest = strings.TrimSuffix(latest, ".exe")
+	latest = strings.TrimSuffix(latest, ".dmg")
+
 	downloadURL = result.Data.DownloadURL
 	hasUpdate = latest != currentVersion
 	return latest, downloadURL, hasUpdate, nil
@@ -106,4 +111,23 @@ func (a *App) StartUpdateChecker() {
 			Body:  body,
 		})
 	}()
+}
+
+func (a *App) GetAppVersion() string {
+	return Version
+}
+
+func (a *App) CheckUpdate() (map[string]any, error) {
+	latest, downloadURL, hasUpdate, err := checkForUpdate(Version)
+	if err != nil {
+		return nil, err
+	}
+	
+	return map[string]any{
+		"hasUpdate":   hasUpdate,
+		"latest":      latest,
+		"current":     Version,
+		"downloadUrl": downloadURL,
+		"platform":    platformSuffix(),
+	}, nil
 }
